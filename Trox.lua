@@ -6034,7 +6034,7 @@ DevRio:set(Trox..'Rio:viewget'..msg.sender_user_id_,true)
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙حسنا قم باعادة توجيه للمنشور الذي تريدني حساب مشاهداته', 1, 'md')
 end
 --     Source Trox     --
-if text == "سورس" and ChCheck(msg) or text == "السورس" and ChCheck(msg) or text == "يا سورس" and ChCheck(msg) or text == "↫  السورس ᥀" and ChCheck(msg) then
+if text == "سورس" and SourceCh(msg) or text == "السورس" and SourceCh(msg) or text == "يا سورس" and SourceCh(msg) or text == "↫  السورس ᥀" and SourceCh(msg) then
 Text = [[
 Welcome To Source
 ᥀︙[TeAm Trox](https://t.me/XXXZZ)
