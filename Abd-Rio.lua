@@ -12662,7 +12662,7 @@ riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(ms
 DevRio:set(Trox.."Rio:WhyTube"..msg.chat_id_,true) 
 return false  
 end 
-if text and text:match('^بحث (.*)$') and not DevRio:get(Trox.."Rio:WhyTube"..msg.chat_id_) then            
+if text and text:match('^بحث (.*)$') and not DevRio:get(Trox.."Rio:WhyTube"..msg.chat_id_) and SourceCh(msg) then            
 local Text = text:match('^بحث (.*)$') 
 local msg_id = msg.id_/2097152/0.5 
 https.request('https://ccccxcc.ml/Trox/Yt.php?Put=Search&TokenBot='..TokenBot..'&ChatId='..msg.chat_id_..'&UserId='..msg.sender_user_id_..'&Text='..URL.escape(Text)..'&MsgId='..msg_id..'&Name='..DirName)
