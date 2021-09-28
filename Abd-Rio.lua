@@ -30,7 +30,7 @@ if res == 200 then
 Abs = json:decode(data)
 if Abs.Result.Info == 'Is_Spam' then
 print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nعذرا هذا الايدي محظور من تنصيب هذا السورس\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
-os.execute('lua Trox.lua') 
+os.execute('lua Abd-Rio.lua') 
 end ---ifBn
 if Abs.Result.Info == 'Ok' then
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
@@ -39,7 +39,7 @@ end ---ifok
 else 
 print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
 end
-os.execute('lua Trox.lua') 
+os.execute('lua Abd-Rio.lua') 
 end
 end 
 if not DevRio:get(Server.."TokenTrox") then 
@@ -56,7 +56,7 @@ end
 else 
 print('\27[1;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\nلم يتم حفظ توكن البوت ارسله مره اخرى\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉') 
 end  
-os.execute('lua Trox.lua') 
+os.execute('lua Abd-Rio.lua') 
 end
 local Create = function(data, file, uglify)  
 file = io.open(file, "w+")   
@@ -97,7 +97,7 @@ echo "~ The Token Was Not Found In The config.lua File!"
 echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
 exit 1
 fi
-./tg -s ./Trox.lua -p PROFILE --bot=$token
+./tg -s ./Abd-Rio.lua -p PROFILE --bot=$token
 done
 ]])  
 file:close()  
@@ -414,12 +414,12 @@ return file_path, code
 end 
 function AddFileSource(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.lua') then
-if File_Name ~= "Trox.lua" then 
+if File_Name ~= "Abd-Rio.lua" then 
 send(chat,msg.id_," ᥀︙هذا الملف ليس تابع لسورس تروكس")
 return false 
 end      
 local File = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/getfile?file_id='..ID_FILE) ) 
-os.execute('rm -rf Trox.lua')
+os.execute('rm -rf Abd-Rio.lua')
 download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..File.result.file_path, ''..File_Name) 
 else
 send(chat,msg.id_,"᥀︙عذرا الملف ليس بصيغة ↫ Lua يرجى رفع الملف الصحيح")
@@ -985,7 +985,7 @@ SudoIds = {NewDev},
 }
 Create(Config, "./config.lua")  
 DevRio:del(Trox.."Rio:NewDev"..data.sender_user_id_)
-dofile('Trox.lua') 
+dofile('Abd-Rio.lua') 
 end
 end
 if DataText == '/nodel' and DevRio:get(Trox..'nodel'..data.sender_user_id_) == 'delno' then
@@ -2078,9 +2078,9 @@ end
 --     Source Trox     -- 
 if DataText and DataText:match('/UpdateSource:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/UpdateSource:'..tonumber(data.sender_user_id_)..'(.*)')
-os.execute('rm -rf Trox.lua') 
+os.execute('rm -rf Abd-Rio.lua') 
 os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Abd-Rio.lua') 
-dofile('Trox.lua') 
+dofile('Abd-Rio.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 Text = "*᥀︙تم تحديث السورس*"
@@ -2090,7 +2090,7 @@ return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText
 end
 if DataText and DataText:match('/UpdateFile:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/UpdateFile:'..tonumber(data.sender_user_id_)..'(.*)')
-dofile('Trox.lua') 
+dofile('Abd-Rio.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 Text = "*᥀︙تم تحديث الملفات*"
@@ -12671,15 +12671,15 @@ end
 if SecondSudo(msg) then
 if text == "تحديث السورس" and SourceCh(msg) or text == "تحديث سورس" and SourceCh(msg) or text == "↫ تحديث السورس ᥀" and SourceCh(msg) then 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙جاري تحديث سورس تروكس', 1, 'md') 
-os.execute('rm -rf Trox.lua') 
+os.execute('rm -rf Abd-Rio.lua') 
 os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Abd-Rio.lua') 
-dofile('Trox.lua') 
+dofile('Abd-Rio.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙تم التحديث الى الاصدار الجديد', 1, 'md') 
 end
 if text == 'تحديث البوت' and SourceCh(msg) or text == '↫ تحديث ᥀' and SourceCh(msg) then  
-dofile('Trox.lua') 
+dofile('Abd-Rio.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم تحديث ملفات البوت", 1, "md")
@@ -12790,7 +12790,7 @@ local GetJson, Res = https.request("https://raw.githubusercontent.com/TeamTrox/T
 if Res == 200 then
 os.execute("rm -fr Files/"..FileName)
 send(msg.chat_id_, msg.id_,"\n᥀︙الملف ↫ *"..FileName.."*\n᥀︙تم تعطيله وحذفه من البوت بنجاح") 
-dofile('Trox.lua')  
+dofile('Abd-Rio.lua')  
 else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد ملف بهذا الاسم") 
 end
@@ -12804,7 +12804,7 @@ local ChekAuto = io.open("Files/"..FileName,'w+')
 ChekAuto:write(GetJson)
 ChekAuto:close()
 send(msg.chat_id_, msg.id_,"\n᥀︙الملف ↫ *"..FileName.."*\n᥀︙تم تفعيله في البوت بنجاح") 
-dofile('Trox.lua')  
+dofile('Abd-Rio.lua')  
 else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد ملف بهذا الاسم") 
 end
