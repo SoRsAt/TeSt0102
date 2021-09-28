@@ -2079,7 +2079,7 @@ end
 if DataText and DataText:match('/UpdateSource:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/UpdateSource:'..tonumber(data.sender_user_id_)..'(.*)')
 os.execute('rm -rf Trox.lua') 
-os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Trox.lua') 
+os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Abd-Rio.lua') 
 dofile('Trox.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
@@ -12672,7 +12672,7 @@ if SecondSudo(msg) then
 if text == "تحديث السورس" and SourceCh(msg) or text == "تحديث سورس" and SourceCh(msg) or text == "↫ تحديث السورس ᥀" and SourceCh(msg) then 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙جاري تحديث سورس تروكس', 1, 'md') 
 os.execute('rm -rf Trox.lua') 
-os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Trox.lua') 
+os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Abd-Rio.lua') 
 dofile('Trox.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
