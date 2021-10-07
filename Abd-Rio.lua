@@ -3513,7 +3513,7 @@ else
 tdcli_function({ID="GetUser",user_id_=DevId},function(arg,result)
 tdcli_function({ID = "GetUserProfilePhotos",user_id_=DevId,offset_=0,limit_ = 1},function(arg,getpro) 
 if getpro.photos_[0] then
-Text = "*᥀︙Dev Name ↬ * ["..result.first_name_.."](t.me/"..result.username_..")\n*᥀︙Dev User ↬* [@"..result.username_.."]\n*᥀︙Dev id ↬* ["..result.id_.."](t.me/"..result.username_..")\n*᥀︙Dev Bio ↬* ["..GetBio(DevId).."]\n*᥀︙Dev Ch ↬* [@"..DevCh1.."]"
+Text = "*᥀︙Dev Name ↬ * ["..result.first_name_.."](t.me/"..result.username_..")\n*᥀︙Dev User ↬* [@"..result.username_.."]\n*᥀︙Dev Ch ↬* [@"..DevCh1.."]"
 keyboard = {}
 keyboard.inline_keyboard = {{{text=''..result.first_name_..'',url="https://t.me/"..result.username_..""}}}
 local msg_id = msg.id_/2097152/0.5
@@ -8231,7 +8231,7 @@ return false
 end
 tdcli_function ({ID="GetUserProfilePhotos",user_id_=Manager_id,offset_=0,limit_=1},function(arg,getpro) 
 if getpro.photos_[0] then
-Text = "*᥀︙Owner Name ↬ * ["..dp.first_name_.."](T.me/"..dp.username_..")\n*᥀︙Owner User ↬* [@"..dp.username_.."]\n*᥀︙Owner id ↬* ["..dp.id_.."](T.me/"..dp.username_..")\n*᥀︙Owner Bio ↬* ["..GetBio(Manager_id).."]"
+Text = "*᥀︙Owner Name ↬ * ["..dp.first_name_.."](T.me/"..dp.username_..")\n*᥀︙Owner User ↬* [@"..dp.username_.."]\n*᥀︙Owner id ↬* ["..dp.id_.."](T.me/"..dp.username_..")"
 keyboard = {} 
 keyboard.inline_keyboard = {{{text=''..dp.first_name_..'',url="t.me/"..dp.username_ or XXXZZ}}}
 local msg_id = msg.id_/2097152/0.5
