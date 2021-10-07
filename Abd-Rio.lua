@@ -2195,14 +2195,14 @@ end
 --     Source Trox     -- 
 if DataText and DataText:match('/Linkinline:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/Linkinline:'..tonumber(data.sender_user_id_)..'(.*)')
-if not DevRio:get(Trox.."Rio:Lock:GpLinksinline"..data.chat_id_) then 
+if not DevRio:get(David.."Rio:Lock:GpLinksinline"..data.chat_id_) then 
 tdcli_function({ID ="GetChat",chat_id_=data.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..data.chat_id_)) or DevRio:get(Trox.."Private:Group:Link"..data.chat_id_) 
 if linkgpp.ok == true then 
-local Text = '᥀︙𝖫𝗂𝗇𝗄 𝖦𝗋𝗈𝗎𝗉 ↬ ⤈\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n['..ta.title_..']('..linkgpp.result..')'
-keyboard = {}  
-keyboard.inline_keyboard = {{{text = ta.title_, url=linkgpp.result}}}
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..data.chat_id_..'&text=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+local Text ='᥀︙𝖫𝗂𝗇𝗄 𝖦𝗋𝗈𝗎𝗉 ↬ ⤈\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n['..ta.title_..']('..linkgpp.result..')'
+keyboard = {} 
+keyboard.inline_keyboard = {{{text= ta.title_, url=linkgpp.result}}}
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 else 
 end 
 end,nil) 
@@ -2212,15 +2212,13 @@ if DataText and DataText:match('/LinkText:'..tonumber(data.sender_user_id_)..'(.
 local Rio = DataText:match('/LinkText:'..tonumber(data.sender_user_id_)..'(.*)')
 if not DevRio:get(Trox..'Rio:Lock:GpLinks'..data.chat_id_) then 
 if DevRio:get(Trox.."Rio:Groups:Links"..data.chat_id_) then
-send(data.chat_id_, data.id_, "᥀︙Group Link ↬ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"..DevRio:get(Trox.."Rio:Groups:Links"..data.chat_id_), 1, "html")
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙Group Link ↬ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"..DevRio:get(Trox.."Rio:Groups:Links"..data.chat_id_), 1, "html")
 else 
-send(data.chat_id_, data.id_, 1, '᥀︙لايوجد رابط ارسل ↫ ضع رابط او ارسل ↫ انشاء رابط للانشاء', 1, 'md')
+EditMsg(Chat_Id2, Msg_Id2, '᥀︙لايوجد رابط ارسل ↫ ضع رابط او ارسل ↫ انشاء رابط للانشاء')
 end
 else
 end
 end
-
-
 --     Source Trox     --
 if DataText and DataText:match('/lockorder:(.*)') then
 local Rio = DataText:match('/lockorder:(.*)')
@@ -3503,14 +3501,29 @@ Dev_Rio(msg.chat_id_, msg.id_, 1, ''..TroxTeam[math.random(#TroxTeam)]..'' , 1, 
 return false
 end
 --     Source Trox     --
-if text and (text == 'المطور' or text == 'مطور' or text == '↫  المطور ᥀') then
+if text == "المطور" or text == "مطور" or text == "↫ المطور ᥀" then
+local Check = https.request('https://api.telegram.org/bot'..TokenBot..'/getChat?chat_id='..DevRio:get(Trox.."Rio:ChId"))
+local GetInfo = JSON.decode(Check)
+local DevCh1 = GetInfo.result.username
+local DevText = DevRio:get(Trox.."DevText")
+if DevRio:get(Trox.."Rio:ChId") then DevCh = '\n᥀︙*Dev Ch* ↬ [@'..DevCh1..']' else DevCh = '' end
+if DevText then
+Dev_Rio(msg.chat_id_, msg.id_,DevText)
+else
 tdcli_function({ID="GetUser",user_id_=DevId},function(arg,result)
+tdcli_function({ID = "GetUserProfilePhotos",user_id_=DevId,offset_=0,limit_ = 1},function(arg,getpro) 
+if getpro.photos_[0] then
+Text = "*᥀︙Dev Name ↬ * ["..result.first_name_.."](t.me/"..result.username_..")\n*᥀︙Dev User ↬* [@"..result.username_.."]\n*᥀︙Dev id ↬* ["..result.id_.."](t.me/"..result.username_..")\n*᥀︙Dev Bio ↬* ["..GetBio(DevId).."]\n*᥀︙Dev Ch ↬* [@"..DevCh1.."]"
+keyboard = {}
+keyboard.inline_keyboard = {{{text=''..result.first_name_..'',url="https://t.me/"..result.username_..""}}}
 local msg_id = msg.id_/2097152/0.5
-Text = "*᥀︙Dev Name ↬ * ["..result.first_name_.."](T.me/"..result.username_..")\n*᥀︙Dev User ↬* [@"..result.username_.."]\n*᥀︙Dev id ↬* ["..result.id_.."](T.me/"..result.username_..")"
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = ''..result.first_name_..' ',url="t.me/"..result.username_ or XXXZZ}}}
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..result.username_..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end,nil)
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Text)..'&photo='..getpro.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙*Dev User* ↬ ['..DevUser..']\n᥀︙*Dev Id* ↬ '..DevId..DevCh, 1, "md")
+end
+end,nil)   
+end,nil)   
+end
 end
 --     Source Trox     --
 if text == "معرفي" or text == "↫  معرفي ᥀" then
@@ -8216,15 +8229,21 @@ if dp.first_name_ == false then
 Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙حساب المنشئ محذوف", 1, "md")
 return false  
 end
-local msg_id = msg.id_/2097152/0.5
-Text = "*᥀︙Owner Name ↬ * ["..dp.first_name_.."](T.me/"..dp.username_..")\n*᥀︙Owner User ↬* [@"..dp.username_.."]\n*᥀︙Owner id ↬* ["..dp.id_.."](T.me/"..dp.username_..")"
+tdcli_function ({ID="GetUserProfilePhotos",user_id_=Manager_id,offset_=0,limit_=1},function(arg,getpro) 
+if getpro.photos_[0] then
+Text = "*᥀︙Owner Name ↬ * ["..dp.first_name_.."](T.me/"..dp.username_..")\n*᥀︙Owner User ↬* [@"..dp.username_.."]\n*᥀︙Owner id ↬* ["..dp.id_.."](T.me/"..dp.username_..")\n*᥀︙Owner Bio ↬* ["..GetBio(Manager_id).."]"
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = ''..dp.first_name_..' ',url="t.me/"..dp.username_ or XXXZZ}}}
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/'..dp.username_..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end,nil)    
-end
+keyboard.inline_keyboard = {{{text=''..dp.first_name_..'',url="t.me/"..dp.username_ or XXXZZ}}}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Text)..'&photo='..getpro.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+Dev_Rio(msg.chat_id_, msg.id_,Text,1, 'md')
 end
 end,nil)   
+end,nil)   
+end
+end
+end,nil)  
 end
 --     Source Trox     --
 if Admin(msg) then
