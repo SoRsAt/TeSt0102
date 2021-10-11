@@ -1104,7 +1104,7 @@ Rio = math.random(2,1201);
 local Text ='*᥀︙تم اختيار مقطع الميمز لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/memz:"..data.sender_user_id_}},{{text=". TeAm Trox ᥀",url="t.me/XXXZZ"}}} 
-return https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. data.chat_id_ .. '&voice=https://t.me/MemzTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+return https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. data.chat_id_ .. '&voice=https://t.me/MemzDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 else
 end
 --     Source Trox     --
@@ -1114,7 +1114,7 @@ Rio = math.random(2,1075);
 local Text ='*᥀︙تم اختيار المتحركه لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/gif:"..data.sender_user_id_}},{{text=". TeAm Trox ᥀",url="t.me/XXXZZ"}}} 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. data.chat_id_ .. '&animation=https://t.me/GifTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. data.chat_id_ .. '&animation=https://t.me/GifDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
 if DataText and DataText:match('/photo:'..tonumber(data.sender_user_id_)..'(.*)') then
@@ -1123,7 +1123,7 @@ Rio = math.random(4,1171);
 local Text ='*᥀︙تم اختيار الصوره لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/photo:"..data.sender_user_id_}},{{text=". TeAm Trox ᥀",url="t.me/XXXZZ"}}} 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. data.chat_id_ .. '&photo=https://t.me/PhotosTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. data.chat_id_ .. '&photo=https://t.me/PhotosDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
 if DataText and DataText:match('/anime:'..tonumber(data.sender_user_id_)..'(.*)') then
@@ -1132,7 +1132,7 @@ Rio = math.random(3,1002);
 local Text ='*᥀︙تم اختيار صورة الانمي لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/anime:"..data.sender_user_id_}},{{text=". TeAm Trox ᥀",url="t.me/XXXZZ"}}} 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. data.chat_id_ .. '&photo=https://t.me/AnimeTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. data.chat_id_ .. '&photo=https://t.me/AnimeDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..Msg_Id2.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
 if DataText and DataText:match(tonumber(data.sender_user_id_)..':SetMem:(.*)') then
@@ -2899,7 +2899,7 @@ DevRio:del(Trox.."List:Cmd:Group:New"..msg.chat_id_)
 end
 Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم حذف الاوامر المضافه في المجموعه", 1, 'html')
 end
-if text == "ترتيب الاوامر" and Constructor(msg) and SourceCh(msg) then
+if text == "ترتيب الاوامر" and Constructor(msg) and ChCheck(msg) then
 DevRio:set(Trox.."Set:Cmd:Group:New1"..msg.chat_id_..":ا","ايدي")
 DevRio:sadd(Trox.."List:Cmd:Group:New"..msg.chat_id_,"ا")
 DevRio:set(Trox.."Set:Cmd:Group:New1"..msg.chat_id_..":م","رفع مميز")
@@ -3487,12 +3487,6 @@ if text == "الزخرفه" or text == "↫ الزخرفه ᥀" then  Dev_Rio(ms
 if text == "معاني الاسماء" or text == "↫ معاني الاسماء ᥀" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ من خلال البوت يمكنك معرفه معنى اسمك \n᥀︙ فقط قم بارسال امر معنى اسم + الاسم \n᥀︙ مثال : معنى اسم ريو', 1, 'md') end
 if text == "عدد المسح" or text == "تعين عدد المسح" or text == "تعيين عدد المسح" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ فقط قم بارسال امر عدد المسح + عدد المسح \n᥀︙ مثال : عدد المسح 100', 1, 'md') end
 if text == "انطق" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ فقط قم بارسال امر انطق + الكلمه\n᥀︙سيقوم البوت بنطق الكلمه \n᥀︙ مثال : انطق هلو', 1, 'md') end
-if text == "يوتيوب" and ChCheck(msg) or text == "اليوتيوب" and ChCheck(msg) or text == "↫ بوت اليوتيوب ᥀" and ChCheck(msg) or text == "بوت اليوتيوب" and ChCheck(msg) or text == "اريد بوت يوتيوب" and ChCheck(msg) or text == "شمرلي بوت يوتيوب" and ChCheck(msg) or text == "يوت" and ChCheck(msg) then local inline = {{{text="اضغط هنا",url="https://t.me/t_stbot"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على بوت اليوتيوب*',nil,inline) return false end
-if text == "اهمس" and ChCheck(msg) or text == "↫ بوت الهمسه ᥀" and ChCheck(msg) or text == "بوت الهمسه" and ChCheck(msg) or text == "همسه" and ChCheck(msg) or text == "اريد بوت الهمسه" and ChCheck(msg) or text == "دزلي بوت الهمسه" and ChCheck(msg) or text == "دزولي بوت الهمسه" and ChCheck(msg) then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙@HMSEBOT\n᥀︙@nnbbot\n᥀︙@ocBot\n᥀︙@hebot ', 1, 'md') end
-if text == "رابط حذف" and ChCheck(msg) or text == "رابط الحذف" and ChCheck(msg) or text == "اريد رابط الحذف" and ChCheck(msg) or text == "شمرلي رابط الحذف" and ChCheck(msg) or text == "اريد رابط حذف" and ChCheck(msg) then local inline = {{{text="اضغط هنا",url="https://t.me/DYFBOT"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على رابط الحذف*',nil,inline) return false end
-if text == "↫ بوت الحذف ᥀" and ChCheck(msg) or text == "بوت الحذف" and ChCheck(msg) or text == "اريد بوت الحذف" and ChCheck(msg) or text == "اريد بوت حذف" and ChCheck(msg) or text == "بوت حذف" and ChCheck(msg) or text == "بوت حذف حسابات" and ChCheck(msg) or text == "راح احذف" and ChCheck(msg) then local inline = {{{text="اضغط هنا",url="https://t.me/DYFBOT"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على بوت الحذف*',nil,inline) return false end
-if text == "↫ بوت الكت ᥀" and ChCheck(msg) or text == "بوت الكت" and ChCheck(msg) or text == "بوت كت" and ChCheck(msg) then local inline = {{{text="اضغط هنا",url="https://t.me/E9OBot"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على بوت الكت*',nil,inline) return false end
-if text == "↫ بوت الزخرفه ᥀" and ChCheck(msg) or text == "بوت الزخرفه" and ChCheck(msg) or text == "بوت زخرفه" and ChCheck(msg) then local inline = {{{text="اضغط هنا",url="https://t.me/W5555Bot"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على بوت الزخرفه*',nil,inline) return false end
 if text == "ايديي" and ChCheck(msg) or text == "↫ ايديي ᥀" and ChCheck(msg) then Dev_Rio(msg.chat_id_, msg.id_, 1,'᥀︙ايديك ↫ ❨ `'..msg.sender_user_id_..'` ❩', 1, 'md') end
 -- Source Trox --
 if text == 'نبذا' and ChCheck(msg) or text == '↫ نبذا ᥀' then
@@ -5744,7 +5738,7 @@ Msg_id = msg.id_/2097152/0.5
 return https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Msg or Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 --     Source Trox     --
-if text and (text == "التسليه" or text == "اوامر التسليه" or text == "تسليه" or text == "تسلية" or text == "التسلية") and SourceCh(msg) then
+if text and (text == "التسليه" or text == "اوامر التسليه" or text == "تسليه" or text == "تسلية" or text == "التسلية") and ChCheck(msg) then
 local Tsl = DevRio:get(Trox..'Rio:Tsl')
 local Text = [[
 *᥀︙اهلا بك في قائمة اوامر التسليه ↫ ⤈*
@@ -5763,7 +5757,7 @@ Msg_id = msg.id_/2097152/0.5
 return https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Help or Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 --     Source Trox     --
-if text ==('تحكم') and SourceCh(msg) and Admin(msg) then
+if text ==('تحكم') and ChCheck(msg) and Admin(msg) then
 function prom_reply(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,dp) 
 if dp.first_name_ == false then
@@ -5782,7 +5776,7 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),prom_reply)
 end 
 end
 --     Source Trox     --
-if text ==('رفع') and SourceCh(msg) then
+if text ==('رفع') and ChCheck(msg) then
 function prom_reply(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,dp) 
 if dp.first_name_ == false then
@@ -5819,7 +5813,7 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),prom_reply)
 end 
 end
 --     Source Trox     --
-if text ==('تنزيل') and SourceCh(msg) then
+if text ==('تنزيل') and ChCheck(msg) then
 function prom_reply(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,dp) 
 if dp.first_name_ == false then
@@ -6053,7 +6047,7 @@ Welcome To Source
 ᥀︙[TeAm Trox](https://t.me/XXXZZ)
 ]]
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = '᥀ Source Channel',url="https://t.me/XXXZZ"}},{{text = '᥀ Developer',url="t.me/EEEEEl"},{text = '᥀ Tws Trox',url="https://t.me/MW_Mbot"}},{{text= '᥀ Exp Source .',url="https://t.me/PHPHB"}}}
+keyboard.inline_keyboard = {{{text = '᥀ Source Channel',url="https://t.me/XXXZZ"}},{{text = '᥀ Developer',url="t.me/EEEEEl"},{text = '᥀ Tws Trox',url="https://t.me/TwSlTroxBot"}},{{text= '᥀ Exp Source .',url="https://t.me/PHPHB"}}}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/XXXZZ&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
@@ -10751,7 +10745,7 @@ riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(ms
 DevRio:set(Trox..'Rio:Mean:Rio'..msg.chat_id_,true)  
 end
 if not DevRio:get(Trox..'Rio:Mean:Rio'..msg.chat_id_) then
-if text and text:match("^معنى الاسم (.*)$") and SourceCh(msg) or text and text:match("^معنى اسم (.*)$") and SourceCh(msg) then 
+if text and text:match("^معنى الاسم (.*)$") and ChCheck(msg) or text and text:match("^معنى اسم (.*)$") and ChCheck(msg) then 
 local TextMean = text:match("^معنى الاسم (.*)$") or text:match("^معنى اسم (.*)$") 
 UrlMean = https.request('https://apiabs.ml/Mean.php?Abs='..URL.escape(TextMean)) 
 Mean = JSON.decode(UrlMean) 
@@ -10760,55 +10754,55 @@ Dev_Rio(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
 --     Source Trox     --
-if text == "تفعيل متحركه" and Manager(msg) and SourceCh(msg) or text == "تفعيل المتحركه" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل متحركه" and Manager(msg) and ChCheck(msg) or text == "تفعيل المتحركه" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل المتحركه'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:gif:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل متحركه" and Manager(msg) and SourceCh(msg) or text == "تعطيل المتحركه" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل متحركه" and Manager(msg) and ChCheck(msg) or text == "تعطيل المتحركه" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل المتحركه'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:gif:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "متحركه" or text == "↫ متحركه ᥀") and not DevRio:get(Trox..'Rio:gif:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "متحركه" or text == "↫ متحركه ᥀") and not DevRio:get(Trox..'Rio:gif:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1075); 
 local Text ='*᥀︙تم اختيار المتحركه لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/gif:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. msg.chat_id_ .. '&animation=https://t.me/GifTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendanimation?chat_id=' .. msg.chat_id_ .. '&animation=https://t.me/GifDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل ميمز" and Manager(msg) and SourceCh(msg) or text == "تفعيل الميمز" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل ميمز" and Manager(msg) and ChCheck(msg) or text == "تفعيل الميمز" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الميمز'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:memz:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل ميمز" and Manager(msg) and SourceCh(msg) or text == "تعطيل الميمز" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل ميمز" and Manager(msg) and ChCheck(msg) or text == "تعطيل الميمز" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الميمز'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:memz:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "ميمز" or text == "↫ ميمز ᥀") and not DevRio:get(Trox..'Rio:memz:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "ميمز" or text == "↫ ميمز ᥀") and not DevRio:get(Trox..'Rio:memz:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1201); 
 local Text ='*᥀︙تم اختيار مقطع الميمز لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/memz:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/MemzTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/MemzDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل غنيلي" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل غنيلي" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل غنيلي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Audios:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل غنيلي" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل غنيلي" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل غنيلي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Audios:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "غنيلي" or text == "↫ غنيلي ᥀") and not DevRio:get(Trox..'Rio:Audios:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "غنيلي" or text == "↫ غنيلي ᥀") and not DevRio:get(Trox..'Rio:Audios:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(4,2824); 
 local Text ='*᥀︙تم اختيار المقطع الصوتي لك*'
 keyboard = {}  
@@ -10817,17 +10811,17 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/AudiosDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل الاغاني" and Manager(msg) and SourceCh(msg) or text == "تفعيل اغنيه" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل الاغاني" and Manager(msg) and ChCheck(msg) or text == "تفعيل اغنيه" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الاغاني'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:mp3:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل الاغاني" and Manager(msg) and SourceCh(msg) or text == "تعطيل اغنيه" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل الاغاني" and Manager(msg) and ChCheck(msg) or text == "تعطيل اغنيه" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الاغاني'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:mp3:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "اغنيه" or text == "↫ اغنيه ᥀" or text == "اغاني") and not DevRio:get(Trox..'Rio:mp3:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "اغنيه" or text == "↫ اغنيه ᥀" or text == "اغاني") and not DevRio:get(Trox..'Rio:mp3:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,1167); 
 local Text ='*᥀︙تم اختيار الاغنيه لك*'
 keyboard = {}  
@@ -10836,69 +10830,69 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendAudio?chat_id=' .. msg.chat_id_ .. '&audio=https://t.me/DavidMp3/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل ريمكس" and Manager(msg) and SourceCh(msg) or text == "تفعيل الريمكس" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل ريمكس" and Manager(msg) and ChCheck(msg) or text == "تفعيل الريمكس" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الريمكس'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Remix:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل ريمكس" and Manager(msg) and SourceCh(msg) or text == "تعطيل الريمكس" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل ريمكس" and Manager(msg) and ChCheck(msg) or text == "تعطيل الريمكس" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الريمكس'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Remix:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "ريمكس" or text == "↫ ريمكس ᥀") and not DevRio:get(Trox..'Rio:Remix:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "ريمكس" or text == "↫ ريمكس ᥀") and not DevRio:get(Trox..'Rio:Remix:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,612); 
 local Text ='*᥀︙تم اختيار الريمكس لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/remix:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/RemixTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendVoice?chat_id=' .. msg.chat_id_ .. '&voice=https://t.me/RemixDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل صوره" and Manager(msg) and SourceCh(msg) or text == "تفعيل الصوره" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل صوره" and Manager(msg) and ChCheck(msg) or text == "تفعيل الصوره" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الصوره'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Photo:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل صوره" and Manager(msg) and SourceCh(msg) or text == "تعطيل الصوره" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل صوره" and Manager(msg) and ChCheck(msg) or text == "تعطيل الصوره" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الصوره'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Photo:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "صوره" or text == "↫ صوره ᥀") and not DevRio:get(Trox..'Rio:Photo:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "صوره" or text == "↫ صوره ᥀") and not DevRio:get(Trox..'Rio:Photo:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(4,1171); 
 local Text ='*᥀︙تم اختيار الصوره لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/photo:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/PhotosTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/PhotosDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل انمي" and Manager(msg) and SourceCh(msg) or text == "تفعيل الانمي" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل انمي" and Manager(msg) and ChCheck(msg) or text == "تفعيل الانمي" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الانمي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Anime:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل انمي" and Manager(msg) and SourceCh(msg) or text == "تعطيل الانمي" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل انمي" and Manager(msg) and ChCheck(msg) or text == "تعطيل الانمي" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الانمي'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Anime:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "انمي" or text == "↫ انمي ᥀") and not DevRio:get(Trox..'Rio:Anime:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "انمي" or text == "↫ انمي ᥀") and not DevRio:get(Trox..'Rio:Anime:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(3,1002); 
 local Text ='*᥀︙تم اختيار صورة الانمي لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/anime:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/AnimeTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/AnimeDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل فلم" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل فلم" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل الافلام'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Movies:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل فلم" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل فلم" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل الافلام'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Movies:Rio'..msg.chat_id_,true)  
@@ -10909,26 +10903,26 @@ local Text ='*᥀︙تم اختيار الفلم لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/Movies:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/MoviesTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/MoviesDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
-if text == "تفعيل مسلسل" and Manager(msg) and SourceCh(msg) then
+if text == "تفعيل مسلسل" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تفعيل المسلسلات'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:del(Trox..'Rio:Series:Rio'..msg.chat_id_) 
 end
-if text == "تعطيل مسلسل" and Manager(msg) and SourceCh(msg) then
+if text == "تعطيل مسلسل" and Manager(msg) and ChCheck(msg) then
 local TroxTeam = '᥀︙اهلا عزيزي ↫ '..RioRank(msg)..' \n᥀︙تم تعطيل المسلسلات'
 riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(msg.sender_user_id_))
 DevRio:set(Trox..'Rio:Series:Rio'..msg.chat_id_,true)  
 end
-if text and (text == "مسلسل" or text == "↫ مسلسل ᥀") and not DevRio:get(Trox..'Rio:Series:Rio'..msg.chat_id_) and SourceCh(msg) then
+if text and (text == "مسلسل" or text == "↫ مسلسل ᥀") and not DevRio:get(Trox..'Rio:Series:Rio'..msg.chat_id_) and ChCheck(msg) then
 Rio = math.random(2,54); 
 local Text ='*᥀︙تم اختيار المسلسل لك*'
 keyboard = {}  
 keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/series:"..msg.sender_user_id_}},{{text = '᥀ Trox Team .',url="t.me/XXXZZ"}}} 
 local msg_id = msg.id_/2097152/0.5 
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/SeriesTrox/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendphoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/SeriesDavid/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
 --     Source Trox     --
 if Admin(msg) then
@@ -12688,7 +12682,7 @@ https.request('https://ccccxcc.ml/Trox/Yt.php?Put=Search&TokenBot='..TokenBot..'
 end
 --     Source Trox     --
 if SecondSudo(msg) then
-if text == "تحديث السورس" and SourceCh(msg) or text == "تحديث سورس" and SourceCh(msg) or text == "↫ تحديث السورس ᥀" and SourceCh(msg) then 
+if text == "تحديث السورس" and ChCheck(msg) or text == "تحديث سورس" and ChCheck(msg) or text == "↫ تحديث السورس ᥀" and ChCheck(msg) then 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙جاري تحديث سورس تروكس', 1, 'md') 
 os.execute('rm -rf Abd-Rio.lua') 
 os.execute('wget https://raw.githubusercontent.com/Team-Trox-abdSource/Trox/master/Abd-Rio.lua') 
@@ -12697,7 +12691,7 @@ io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n") 
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙تم التحديث الى الاصدار الجديد', 1, 'md') 
 end
-if text == 'تحديث البوت' and SourceCh(msg) or text == '↫ تحديث ᥀' and SourceCh(msg) then  
+if text == 'تحديث البوت' and ChCheck(msg) or text == '↫ تحديث ᥀' and ChCheck(msg) then  
 dofile('Abd-Rio.lua') 
 io.popen("rm -rf ../.telegram-cli/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
@@ -12758,7 +12752,7 @@ send(msg.chat_id_, msg.id_,'᥀︙تم نقل ↫ '..#Groups..' مجموعه\n�
 end
 end
 --     Source Trox     --
-if text == 'الملفات' and SourceCh(msg) and SecondSudo(msg) then
+if text == 'الملفات' and ChCheck(msg) and SecondSudo(msg) then
 Files = '\n᥀︙الملفات المفعله في البوت ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n'
 i = 0
 for v in io.popen('ls Files'):lines() do
@@ -12772,7 +12766,7 @@ Files = '᥀︙لا توجد ملفات في البوت'
 end
 send(msg.chat_id_, msg.id_,Files)
 end
-if text == "متجر الملفات" and SecondSudo(msg) and SourceCh(msg) or text == 'المتجر' and SourceCh(msg) and SecondSudo(msg) or text == '↫  المتجر ᥀' and SourceCh(msg) and SecondSudo(msg) then
+if text == "متجر الملفات" and SecondSudo(msg) and ChCheck(msg) or text == 'المتجر' and ChCheck(msg) and SecondSudo(msg) or text == '↫  المتجر ᥀' and ChCheck(msg) and SecondSudo(msg) then
 local Get_Files, res = https.request("https://raw.githubusercontent.com/TeamTrox/TroxFiles/master/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
@@ -12798,11 +12792,11 @@ else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد اتصال من الـapi") 
 end
 end
-if text == "مسح جميع الملفات" and SourceCh(msg) or text == "حذف جميع الملفات" and SourceCh(msg) then
+if text == "مسح جميع الملفات" and ChCheck(msg) or text == "حذف جميع الملفات" and ChCheck(msg) then
 os.execute("rm -fr Files/*")
 send(msg.chat_id_,msg.id_,"᥀︙تم حذف جميع الملفات المفعله")
 end
-if text and text:match("^(تعطيل ملف) (.*)(.lua)$") and SourceCh(msg) and SecondSudo(msg) then
+if text and text:match("^(تعطيل ملف) (.*)(.lua)$") and ChCheck(msg) and SecondSudo(msg) then
 local FileGet = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
 local GetJson, Res = https.request("https://raw.githubusercontent.com/TeamTrox/TroxFiles/master/TroxFiles/"..FileName)
@@ -12814,7 +12808,7 @@ else
 send(msg.chat_id_, msg.id_,"᥀︙لا يوجد ملف بهذا الاسم") 
 end
 end
-if text and text:match("^(تفعيل ملف) (.*)(.lua)$") and SourceCh(msg) and SecondSudo(msg) then
+if text and text:match("^(تفعيل ملف) (.*)(.lua)$") and ChCheck(msg) and SecondSudo(msg) then
 local FileGet = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
 local FileName = FileGet[2]..'.lua'
 local GetJson, Res = https.request("https://raw.githubusercontent.com/TeamTrox/TroxFiles/master/TroxFiles/"..FileName)
