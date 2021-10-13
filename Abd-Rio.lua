@@ -1078,6 +1078,35 @@ EditMsg(Chat_Id2, Msg_Id2, "᥀︙عذرا صلاحية الامر منتهيه 
 end
 end
 --     Source Trox     --
+if DataText and DataText:match('/DelKt:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/DelKt:'..tonumber(data.sender_user_id_)..'(.*)')
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙السؤال ↫ "..Rio.." تم حذفه") 
+DevRio:del(Trox..'Rio:Text:KtTexts'..Rio..data.chat_id_)
+DevRio:srem(Trox..'Rio:Sudo:Kt'..data.chat_id_,Rio)
+end
+if DataText and DataText:match('/EndKt:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/EndKt:'..tonumber(data.sender_user_id_)..'(.*)')
+local List = DevRio:smembers(Trox..'Rio:Text:KtTexts'..Rio..data.chat_id_)
+if DevRio:get(Trox..'Rio:Add:Kt'..data.sender_user_id_..data.chat_id_) then
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙تم انهاء وحفظ ↫ "..#List.." من الاسئله للامر ↫ "..Rio) 
+DevRio:del(Trox..'Rio:Add:Kt'..data.sender_user_id_..data.chat_id_)
+else
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙عذرا صلاحية الامر منتهيه !") 
+end
+end
+if DataText and DataText:match('/DelAllKt:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/DelAllKt:'..tonumber(data.sender_user_id_)..'(.*)')
+if DevRio:get(Trox..'Rio:Add:Kt'..data.sender_user_id_..data.chat_id_) then
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙تم الغاء عملية حفظ الاسئله للامر ↫ "..Rio) 
+DevRio:del(Trox..'Rio:Add:Kt'..data.sender_user_id_..data.chat_id_)
+DevRio:del(Trox..'Rio:Text:KtTexts'..Rio..data.chat_id_)
+DevRio:del(Trox..'Rio:Add:KtTexts'..data.sender_user_id_..data.chat_id_)
+DevRio:srem(Trox..'Rio:Sudo:Kt'..data.chat_id_,Rio)
+else
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙عذرا صلاحية الامر منتهيه !") 
+end
+end
+--     Source Trox     --
 if DataText and DataText:match('/Song:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/Song:'..tonumber(data.sender_user_id_)..'(.*)')
 Rio = math.random(4,2824); 
@@ -1647,6 +1676,201 @@ keyboard = {}
 keyboard.inline_keyboard = {{{text="• اخفاء الكليشه •",callback_data="/HideHelpList:"..data.sender_user_id_},{text="• رجوع •",callback_data="/CmdList:"..data.sender_user_id_}}}
 return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
+--     Source David     --
+if DataText and DataText:match('/On:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/On:'..tonumber(data.sender_user_id_)..'(.*)')
+tdcli_function ({ID = "GetUser",user_id_ = data.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=data.chat_id_},function(arg,dp) 
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = data.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,rio) 
+local admins = rio.members_
+for i=0 , #admins do
+if rio.members_[i].bot_info_ == false and rio.members_[i].status_.ID == "ChatMemberStatusEditor" then
+DevRio:sadd(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_},function(arg,ba) 
+if ba.first_name_ == false then
+DevRio:srem(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)
+end
+end,nil)
+else
+DevRio:sadd(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)
+end
+if rio.members_[i].status_.ID == "ChatMemberStatusCreator" then
+DevRio:sadd(Trox.."Rio:BasicConstructor:"..data.chat_id_,admins[i].user_id_)
+DevRio:sadd(Trox.."Rio:RioConstructor:"..data.chat_id_,admins[i].user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_},function(arg,ba) 
+if ba.first_name_ == false then
+DevRio:srem(Trox.."Rio:BasicConstructor:"..data.chat_id_,admins[i].user_id_)
+DevRio:srem(Trox.."Rio:RioConstructor:"..data.chat_id_,admins[i].user_id_)
+end
+end,nil)  
+end 
+end
+end,nil)
+if DevRio:sismember(Trox..'Rio:Groups',data.chat_id_) then
+EditMsg(Chat_Id2, Msg_Id2, '᥀︙المجموعه بالتاكيد مفعله')
+else
+Text = "᥀︙تم تفعيل المجموعه "..dp.title_
+keyboard = {} 
+keyboard.inline_keyboard = {{{text="‹ ترتيب الاوامر ›",callback_data="/SetCmdGp:"..data.sender_user_id_},{text="‹ رفع الادمنيه ›",callback_data="/UploadAdmin:"..data.sender_user_id_}},{{text="‹ غادر ›",callback_data="/LeaveBot:"..data.sender_user_id_},{text="‹ تعطيل ›",callback_data="/Stop:"..data.sender_user_id_}},{{text="‹ TeAm David ›",url="t.me/L9L9L"}}}
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+DevRio:sadd(Trox.."Rio:Groups",data.chat_id_)
+if not DevRio:get(Trox..'Rio:SudosGp'..data.sender_user_id_..data.chat_id_) and not SecondSudo(data) then 
+DevRio:incrby(Trox..'Rio:Sudos'..data.sender_user_id_,1)
+DevRio:set(Trox..'Rio:SudosGp'..data.sender_user_id_..data.chat_id_,"rio")
+end
+local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","") 
+local Name1 = Name1:gsub("{","") 
+local Name1 = Name1:gsub("}","") 
+local Name ='['..Name1..'](tg://user?id='..result.id_..')'
+local NumMem = data.member_count_
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"") 
+local NameChat = NameChat:gsub("'","") 
+local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","") 
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..data.chat_id_))
+if LinkGp.ok == true then 
+LinkGroup = LinkGp.result
+else
+LinkGroup ='لا يوجد'
+end
+DevRio:set(Trox.."Rio:Groups:Links"..data.chat_id_,LinkGroup) 
+if not Sudo(data) then
+SendText(DevId,"᥀︙تم تفعيل مجموعه جديده ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n᥀︙بواسطة ↫ "..Name.."\n᥀︙اسم المجموعه ↫ ["..NameChat.."]\n᥀︙عدد اعضاء المجموعه ↫ ❨ *"..NumMem.."* ❩\n᥀︙ايدي المجموعه ↫ ⤈ \n❨ `"..data.chat_id_.."` ❩\n᥀︙رابط المجموعه ↫ ⤈\n❨ ["..LinkGroup.."] ❩\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n᥀︙الوقت ↫ "..os.date("%I:%M%p").."\n᥀︙التاريخ ↫ "..os.date("%Y/%m/%d").."",0,'md')
+end
+end
+end,nil)
+end,nil)
+end
+--     Source David     --
+if DataText and DataText:match('/Stop:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/Stop:'..tonumber(data.sender_user_id_)..'(.*)')
+tdcli_function ({ID = "GetUser",user_id_ = data.sender_user_id_},function(extra,result,success)
+tdcli_function({ID ="GetChat",chat_id_=data.chat_id_},function(arg,dp) 
+if not DevRio:sismember(Trox..'Rio:Groups',data.chat_id_) then
+EditMsg(Chat_Id2, Msg_Id2, "᥀︙المجموعه بالتاكيد معطله") 
+else
+Text = "᥀︙تم تعطيل المجموعه "..dp.title_
+keyboard = {}
+keyboard.inline_keyboard = {{{text="‹ غادر ›",callback_data="/LeaveBot:"..data.sender_user_id_},{text="‹ تفعيل ›",callback_data="/On:"..data.sender_user_id_}},{{text="‹ TeAm David ›",url="t.me/L9L9L"}}}
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+DevRio:srem(Trox.."Rio:Groups",data.chat_id_)
+local Name1 = result.first_name_
+local Name1 = Name1:gsub('"',"") 
+local Name1 = Name1:gsub("'","") 
+local Name1 = Name1:gsub("`","") 
+local Name1 = Name1:gsub("*","") 
+local Name1 = Name1:gsub("{","") 
+local Name1 = Name1:gsub("}","") 
+local Name ='['..Name1..'](tg://user?id='..result.id_..')'
+local NameChat = dp.title_
+local NameChat = NameChat:gsub('"',"") 
+local NameChat = NameChat:gsub("'","") 
+local NameChat = NameChat:gsub("`","") 
+local NameChat = NameChat:gsub("*","") 
+local NameChat = NameChat:gsub("{","") 
+local NameChat = NameChat:gsub("}","") 
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..data.chat_id_))
+if LinkGp.ok == true then 
+LinkGroup = LinkGp.result
+else
+LinkGroup ='لا يوجد'
+end
+DevRio:set(Trox.."Rio:Groups:Links"..data.chat_id_,LinkGroup) 
+if not Sudo(data) then
+SendText(DevId,"᥀︙تم تعطيل مجموعه جديده ↫ ⤈ \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n᥀︙بواسطة ↫ "..Name.."\n᥀︙اسم المجموعه ↫ ["..NameChat.."]\n᥀︙ايدي المجموعه ↫ ⤈ \n❨ `"..data.chat_id_.."` ❩\n᥀︙رابط المجموعه ↫ ⤈\n❨ ["..LinkGroup.."] ❩\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n᥀︙الوقت ↫ "..os.date("%I:%M%p").."\n᥀︙التاريخ ↫ "..os.date("%Y/%m/%d").."",0,'md')
+end
+end
+end,nil)
+end,nil)
+end
+--     Source David     --
+if DataText and DataText:match('/SetCmdGp:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/SetCmdGp:'..tonumber(data.sender_user_id_)..'(.*)')
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":ا","ايدي")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"ا")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":م","رفع مميز")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"م")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":اد","رفع ادمن")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"اد")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":مد","رفع مدير")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"مد")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":من","رفع منشئ")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"من")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":اس","رفع منشئ اساسي")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"اس")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":مط","رفع مطور")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"مط")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":ثانوي","رفع مطور ثانوي")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"ثانوي")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":تك","تنزيل الكل")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"تك")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":تعط","تعطيل الايدي بالصوره")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"تعط")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":تفع","تفعيل الايدي بالصوره")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"تفع")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":ر","الرابط")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"ر")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":رر","ردود المدير")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"رر")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":،،","مسح المكتومين")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"،،")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":رد","اضف رد")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"رد")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":غ","غنيلي")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"غ")
+DevRio:set(Trox.."Set:Cmd:Group:New1"..data.chat_id_..":#","مسح قائمه العام")
+DevRio:sadd(Trox.."List:Cmd:Group:New"..data.chat_id_,"#")
+Text = "᥀︙تم ترتيب الاوامر بالشكل التالي ~\n᥀︙ ايدي - ا .\n᥀︙ رفع مميز - م .\n᥀︙رفع ادمن - اد .\n᥀︙ رفع مدير - مد . \n᥀︙ رفع منشى - من . \n᥀︙ رفع منشئ الاساسي - اس  .\n᥀︙ رفع مطور - مط .\n᥀︙رفع مطور ثانوي - ثانوي .\n᥀︙ تنزيل الكل - تك .\n᥀︙ تعطيل الايدي بالصوره - تعط .\n᥀︙ تفعيل الايدي بالصوره - تفع .\n᥀︙ الرابط - ر .\n᥀︙ ردود المدير - رر .\n᥀︙ مسح المكتومين - ،، .\n᥀︙ اضف رد - رد .\n᥀︙ مسح سحكاتي - سح .\n᥀︙ مسح رسائلي - رس .\n᥀︙ غنيلي - غ .\n᥀︙مسح قائمه العام"
+keyboard = {} 
+keyboard.inline_keyboard = {{{text="‹ رجوع ›",callback_data="/Reload:"..data.sender_user_id_}},{{text='‹ TeAm David ›',url="t.me/L9L9L"}}}
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+--     Source David     --
+if DataText and DataText:match('/Reload:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/Reload:'..tonumber(data.sender_user_id_)..'(.*)')
+Text = "᥀︙تم تفعيل المجموعه"
+keyboard = {} 
+keyboard.inline_keyboard = {{{text="‹ ترتيب الاوامر ›",callback_data="/SetCmdGp:"..data.sender_user_id_},{text="‹ رفع الادمنيه ›",callback_data="/UploadAdmin:"..data.sender_user_id_}},{{text="‹ غادر ›",callback_data="/LeaveBot:"..data.sender_user_id_},{text="‹ تعطيل ›",callback_data="/Stop:"..data.sender_user_id_}},{{text="‹ TeAm David ›",url="t.me/L9L9L"}}}
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+--     Source David     -- 
+if DataText and DataText:match('/UploadAdmin:'..tonumber(data.sender_user_id_)..'(.*)') then
+local Rio = DataText:match('/UploadAdmin:'..tonumber(data.sender_user_id_)..'(.*)')
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = data.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 200},function(arg,rio) 
+local num = 0
+local admins = rio.members_  
+for i=0 , #admins do   
+if rio.members_[i].bot_info_ == false and rio.members_[i].status_.ID == "ChatMemberStatusEditor" then
+DevRio:sadd(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)   
+num = num + 1
+tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_},function(arg,dp) 
+if dp.first_name_ == false then
+DevRio:srem(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)   
+end
+end,nil)   
+else
+DevRio:srem(Trox..'Rio:Admins:'..data.chat_id_, admins[i].user_id_)   
+end 
+if rio.members_[i].status_.ID == "ChatMemberStatusCreator" then  
+Manager_id = admins[i].user_id_  
+DevRio:sadd(Trox..'Rio:BasicConstructor:'..data.chat_id_,Manager_id)  
+DevRio:sadd(Trox..'Rio:RioConstructor:'..data.chat_id_,Manager_id)   
+end  
+end  
+if num == 0 then
+EditMsg(Chat_Id2, Msg_Id2,  "᥀︙لا يوجد ادمنيه ليتم رفعهم\n᥀︙تم رفع مالك المجموعه", 1, 'md')
+else
+EditMsg(Chat_Id2, Msg_Id2,  '᥀︙تم رفع '..num..' من الادمنيه \n᥀︙تم رفع مالك المجموعه', 1, 'md')
+end
+end,nil) 
+end
 --     Source Trox     --
 if DataText and DataText:match('/CancelAllRed:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/CancelAllRed:'..tonumber(data.sender_user_id_)..'(.*)')
@@ -2195,7 +2419,7 @@ end
 --     Source Trox     -- 
 if DataText and DataText:match('/Linkinline:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/Linkinline:'..tonumber(data.sender_user_id_)..'(.*)')
-if not DevRio:get(David.."Rio:Lock:GpLinksinline"..data.chat_id_) then 
+if not DevRio:get(Trox.."Rio:Lock:GpLinksinline"..data.chat_id_) then 
 tdcli_function({ID ="GetChat",chat_id_=data.chat_id_},function(arg,ta) 
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..data.chat_id_)) or DevRio:get(Trox.."Private:Group:Link"..data.chat_id_) 
 if linkgpp.ok == true then 
@@ -3484,6 +3708,8 @@ if text == "الابراج" or text == "↫ الابراج ᥀" then  Dev_Rio(ms
 if text == "حساب العمر" or text == "↫ حساب العمر ᥀" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ من خلال البوت يمكنك حساب عمرك \n᥀︙ فقط قم بارسال امر احسب + مواليدك الى البوت \n᥀︙ بالتنسيق التالي مثال : احسب 2000/7/24', 1, 'md') end
 if text == "الحمايه" or text == "↫ الحمايه ᥀" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ اضف البوت في المجموعه ثم قم برفعه مشرف وارسل تفعيل \n᥀︙ وتمتع بخدمات غير موجوده في باقي البوتات ', 1, 'md') end
 if text == "الزخرفه" or text == "↫ الزخرفه ᥀" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙قم بأرسال أمر زخرفه وثم ارسال الاسم الذي تريد زخرفته بألانكليزي أو العربي', 1, 'md') end
+if text == "اهمس" and ChCheck(msg) or text == "↫ بوت الهمسه ᥀" and ChCheck(msg) or text == "بوت الهمسه" and ChCheck(msg) or text == "همسه" and ChCheck(msg) or text == "اريد بوت الهمسه" and ChCheck(msg) or text == "دزلي بوت الهمسه" and ChCheck(msg) or text == "دزولي بوت الهمسه" and ChCheck(msg) then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙@XllHbot ', 1, 'md') end
+if text == "يوتيوب" and ChCheck(msg) or text == "اليوتيوب" and ChCheck(msg) or text == "↫ بوت اليوتيوب ᥀" and ChCheck(msg) or text == "بوت اليوتيوب" and ChCheck(msg) or text == "اريد بوت يوتيوب" and ChCheck(msg) or text == "شمرلي بوت يوتيوب" and ChCheck(msg) or text == "يوت" and ChCheck(msg) then local inline = {{{text="‹ اضغط هنا ›",url="https://t.me/XiXbbot"}}} SendInline(msg.chat_id_,'*᥀︙اضغط للحصول على بوت اليوتيوب*',nil,inline,msg.id_/2097152/0.5) return false end
 if text == "معاني الاسماء" or text == "↫ معاني الاسماء ᥀" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ من خلال البوت يمكنك معرفه معنى اسمك \n᥀︙ فقط قم بارسال امر معنى اسم + الاسم \n᥀︙ مثال : معنى اسم ريو', 1, 'md') end
 if text == "عدد المسح" or text == "تعين عدد المسح" or text == "تعيين عدد المسح" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ فقط قم بارسال امر عدد المسح + عدد المسح \n᥀︙ مثال : عدد المسح 100', 1, 'md') end
 if text == "انطق" then  Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙ فقط قم بارسال امر انطق + الكلمه\n᥀︙سيقوم البوت بنطق الكلمه \n᥀︙ مثال : انطق هلو', 1, 'md') end
@@ -3957,6 +4183,41 @@ if text and not DevRio:get(Trox..'Rio:Add:GpRedod'..msg.sender_user_id_..msg.cha
 if DevRio:sismember(Trox..'Rio:Manager:GpRedod'..msg.chat_id_,text) then
 local TroxTeam =  DevRio:smembers(Trox..'Rio:Text:GpTexts'..text..msg.chat_id_)
 Dev_Rio(msg.chat_id_, msg.id_, 1, '['..TroxTeam[math.random(#TroxTeam)]..']' , 1, 'md')  
+end
+end
+--     Source Trox     --
+if text and text:match("^(.*)$") then
+local SaveKt = DevRio:get(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_)
+if SaveKt == 'SaveKt' then
+local GetKtTexts = DevRio:get(Trox..'Rio:Add:KtTexts'..msg.sender_user_id_..msg.chat_id_)
+local List = DevRio:smembers(Trox..'Rio:Text:KtTexts'..GetKtTexts..msg.chat_id_)
+if text == "الغاء" then 
+Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙᥀︙تم الغاء عملية حفظ اسئلة الكت  ↫ "..GetKtTexts ,  1, "md")
+DevRio:del(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_)
+DevRio:del(Trox..'Rio:Text:KtTexts'..GetKtTexts..msg.chat_id_)
+DevRio:del(Trox..'Rio:Add:KtTexts'..msg.sender_user_id_..msg.chat_id_)
+DevRio:srem(Trox..'Rio:Sudo:Kt'..msg.chat_id_,GetKtTexts)
+return false
+end
+Text = text:gsub('"',""):gsub('"',""):gsub("`",""):gsub("*","")
+DevRio:sadd(Trox..'Rio:Text:KtTexts'..GetKtTexts..msg.chat_id_,Text)
+if #List == 100 then 
+Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم حفظ ↫ 100 من اسئلة الكت ↫ "..GetKtTexts ,  1, "md")
+DevRio:del(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_)
+return false
+end
+local Rio = "᥀︙تم حفظ الرد رقم ↫ "..(#List+1).."\n᥀︙قم بارسال السؤال رقم ↫ "..(#List+2)
+keyboard = {} 
+keyboard.inline_keyboard = {{{text="انهاء وحفظ "..(#List+1).." من الاسئله",callback_data="/EndKt:"..msg.sender_user_id_..GetKtTexts}},{{text="الغاء وحذف التخزين",callback_data="/DelAllKt:"..msg.sender_user_id_..GetKtTexts}}} 
+Msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Rio).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+return false
+end
+end
+if text and not DevRio:get(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_) then
+if DevRio:sismember(Trox..'Rio:Sudo:Kt'..msg.chat_id_,text) then
+local DavidTeam =  DevRio:smembers(Trox..'Rio:Text:KtTexts'..text..msg.chat_id_)
+Dev_Rio(msg.chat_id_, msg.id_, 1, '['..DavidTeam[math.random(#DavidTeam)]..']' , 1, 'md')  
 end
 end
 --     Source Trox     --
@@ -11342,7 +11603,7 @@ end
 end
 --     Source Trox     --
 if text and text:match('^تفعيل$') and SudoBot(msg) and ChCheck(msg) then
-if ChatType ~= 'sp' then
+if ChatType ~='sp' then
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي', 1, 'md')
 return false
 end
@@ -11385,7 +11646,9 @@ end,nil)
 if DevRio:sismember(Trox..'Rio:Groups',msg.chat_id_) then
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
-ReplyStatus(msg,result.id_,"ReplyBy","᥀︙تم تفعيل المجموعه "..dp.title_)  
+Text = "᥀︙تم تفعيل المجموعه "..dp.title_
+local inline = {{{text="‹ ترتيب الاوامر ›",callback_data="/SetCmdGp:"..msg.sender_user_id_},{text="‹ رفع الادمنيه ›",callback_data="/UploadAdmin:"..msg.sender_user_id_}},{{text="‹ غادر ›",callback_data="/LeaveBot:"..msg.sender_user_id_},{text="‹ تعطيل ›",callback_data="/Stop:"..msg.sender_user_id_}},{{text="‹ TeAm David ›",url="t.me/L9L9L"}}}
+SendInline(msg.chat_id_,Text,nil,inline,msg.id_/2097152/0.5)
 DevRio:sadd(Trox.."Rio:Groups",msg.chat_id_)
 if not DevRio:get(Trox..'Rio:SudosGp'..msg.sender_user_id_..msg.chat_id_) and not SecondSudo(msg) then 
 DevRio:incrby(Trox..'Rio:Sudos'..msg.sender_user_id_,1)
@@ -11398,7 +11661,7 @@ local Name1 = Name1:gsub("`","")
 local Name1 = Name1:gsub("*","") 
 local Name1 = Name1:gsub("{","") 
 local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local Name ='['..Name1..'](tg://user?id='..result.id_..')'
 local NumMem = data.member_count_
 local NameChat = dp.title_
 local NameChat = NameChat:gsub('"',"") 
@@ -11411,7 +11674,7 @@ local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..TokenBo
 if LinkGp.ok == true then 
 LinkGroup = LinkGp.result
 else
-LinkGroup = 'لا يوجد'
+LinkGroup ='لا يوجد'
 end
 DevRio:set(Trox.."Rio:Groups:Links"..msg.chat_id_,LinkGroup) 
 if not Sudo(msg) then
@@ -11422,13 +11685,15 @@ end,nil)
 end,nil)
 end,nil)
 end
-if text == 'تعطيل' and SudoBot(msg) and ChCheck(msg) then
+if text =='تعطيل' and SudoBot(msg) and ChCheck(msg) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
 if not DevRio:sismember(Trox..'Rio:Groups',msg.chat_id_) then
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙المجموعه بالتاكيد معطله', 1, 'md')
 else
-ReplyStatus(msg,result.id_,"ReplyBy","᥀︙تم تعطيل المجموعه "..dp.title_)  
+Text = "᥀︙تم تعطيل المجموعه "..dp.title_
+local inline = {{{text="‹ غادر ›",callback_data="/LeaveBot:"..msg.sender_user_id_},{text="‹ تفعيل ›",callback_data="/On:"..msg.sender_user_id_}},{{text="‹ TeAm David ›",url="t.me/L9L9L"}}}
+SendInline(msg.chat_id_,Text,nil,inline,msg.id_/2097152/0.5)
 DevRio:srem(Trox.."Rio:Groups",msg.chat_id_)
 local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
@@ -11437,7 +11702,7 @@ local Name1 = Name1:gsub("`","")
 local Name1 = Name1:gsub("*","") 
 local Name1 = Name1:gsub("{","") 
 local Name1 = Name1:gsub("}","") 
-local Name = '['..Name1..'](tg://user?id='..result.id_..')'
+local Name ='['..Name1..'](tg://user?id='..result.id_..')'
 local NameChat = dp.title_
 local NameChat = NameChat:gsub('"',"") 
 local NameChat = NameChat:gsub("'","") 
@@ -11449,7 +11714,7 @@ local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..TokenBo
 if LinkGp.ok == true then 
 LinkGroup = LinkGp.result
 else
-LinkGroup = 'لا يوجد'
+LinkGroup ='لا يوجد'
 end
 DevRio:set(Trox.."Rio:Groups:Links"..msg.chat_id_,LinkGroup) 
 if not Sudo(msg) then
@@ -11860,6 +12125,26 @@ Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم حفظ الامر ارسل الر�
 DevRio:set(Trox..'Rio:Add:GpRedod'..msg.sender_user_id_..msg.chat_id_,'SaveGpRedod')
 DevRio:set(Trox..'Rio:Add:GpTexts'..msg.sender_user_id_..msg.chat_id_,text)
 DevRio:sadd(Trox..'Rio:Manager:GpRedod'..msg.chat_id_,text)
+return false
+end end
+--     Source Trox     --
+if text == 'اضف كت' and ChCheck(msg) then
+DevRio:set(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_,'SetKt')
+Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙حسنا ارسل امر `كت تويت` الان" ,  1, "md")
+return false
+end
+if text and text:match("^(.*)$") then
+local SetKt = DevRio:get(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_)
+if SetKt == 'SetKt' then
+if text == "الغاء" then 
+Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم الغاء الامر" ,  1, "md")
+DevRio:del(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_)
+return false
+end
+Dev_Rio(msg.chat_id_, msg.id_, 1, "᥀︙تم حفظ الامر ارسل السؤال الاول\n᥀︙للخروج ارسل ↫ ( الغاء )" ,  1, "md")
+DevRio:set(Trox..'Rio:Add:Kt'..msg.sender_user_id_..msg.chat_id_,'SaveKt')
+DevRio:set(Trox..'Rio:Add:KtTexts'..msg.sender_user_id_..msg.chat_id_,text)
+DevRio:sadd(Trox..'Rio:Sudo:Kt'..msg.chat_id_,text)
 return false
 end end
 --     Source Trox     --
