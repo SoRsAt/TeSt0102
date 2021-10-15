@@ -6115,18 +6115,14 @@ end
 end
 --     Source Trox     --
 if text == "الرابط" then
-tdcli_function({ID="GetUserProfilePhotos",user_id_=Trox,offset_=0,limit_= 1},function(arg,rio) 
-if rio.photos_[0] then
 local Link = DevRio:get(Trox..'Rio:Link')
-local Text = '*᥀︙اختر نوع الرابط لجلبه*'
-keyboard = {}
-keyboard.inline_keyboard = {{{text="‹ الرابط نص ›",callback_data="/LinkText:"..msg.sender_user_id_},{text="‹ الرابط انلاين ›",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="‹ اخفاء الكليشه ›",callback_data="/HideHelpList:"..msg.sender_user_id_}}}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Text)..'&photo='..rio.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
-else
-Dev_Rio(msg.chat_id_,msg.id_,1, '*᥀︙اختر نوع الرابط لجلبه*', "md")
-end
-end,nil)
+local Text = [[
+*᥀︙اختر نوع الرابط لجلبه*
+]] 
+keyboard = {} 
+keyboard.inline_keyboard = {{{text="الرابط نص",callback_data="/LinkText:"..msg.sender_user_id_},{text="الرابط انلاين",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="• اخفاء الكليشه •",callback_data="/HideHelpList:"..msg.sender_user_id_}}}
+Msg_id = msg.id_/2097152/0.5
+return https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Link or Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 --     Source Trox     --
 if text == 'الالعاب' and ChCheck(msg) or text == 'العاب' and ChCheck(msg) or text == 'اللعبه' and ChCheck(msg) or text == '↫ الالعاب ᥀' and ChCheck(msg) then
