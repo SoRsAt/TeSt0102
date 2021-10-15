@@ -1925,10 +1925,10 @@ end end
 --     Source Trox     --
 if DataText and DataText:match('/DelEdit:'..tonumber(data.sender_user_id_)..'(.*)') then
 local Rio = DataText:match('/DelEdit:'..tonumber(data.sender_user_id_)..'(.*)')
-DevRio:del(Trox..'Rio:EditMsg'..data.chat_id_..':'..data.sender_user_id_)
+DevRio:del(Trox..'Rio:EditMsg'..data.chat_id_..data.sender_user_id_)
 Text = "*᥀︙تم حذف جميع تعديلاتك بنجاح*"
 keyboard = {} 
-keyboard.inline_keyboard = {{{text="• رجوع •",callback_data="/DelHome:"..data.sender_user_id_}},{{text="• اخفاء الكليشه •",callback_data="/HideHelpList:"..data.sender_user_id_}}}
+keyboard.inline_keyboard = {{{text="‹ رجوع ›",callback_data="/DelHome:"..data.sender_user_id_}},{{text="‹ اخفاء الكليشه ›",callback_data="/HideHelpList:"..data.sender_user_id_}}}
 https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text=' .. URL.escape(Text).."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end 
 --     Source Trox     --
@@ -3575,10 +3575,11 @@ end
 --     Source Trox     --
 if text == '/start' and ChCheck(msg) then  
 if not DevRio:get(Trox..'Rio:Start:Time'..msg.sender_user_id_) then
-tdcli_function({ID="GetUser",user_id_=DevId},function(arg,dp) 
+tdcli_function({ID="GetUser",user_id_=DevId},function(arg,dp)
+tdcli_function({ID="GetUser",user_id_=Trox},function(arg,dpbot)
 local inline = {
 {{text="᥀ المطور .",url="t.me/"..(dp.username_ or "XXXZZ")}},
-{{text="᥀ السورس .",url="https://t.me/XXXZZ"},{text="᥀ لتنصيب بوت .",url="https://t.me/EEEEEl"}},{{text="᥀ اضفني في مجموعتك .",url="t.me/"..dp.username_.."?startgroup=botstart"}}
+{{text="᥀ السورس .",url="https://t.me/XXXZZ"},{text="᥀ لتنصيب بوت .",url="https://t.me/EEEEEl"}},{{text="᥀ اضفني في مجموعتك .",url="t.me/"..dpbot.username_.."?startgroup=botstart"}}
 }
 local start = DevRio:get(Trox.."Rio:Start:Bot")
 if start then 
@@ -3587,6 +3588,7 @@ else
 Start_Source = "᥀︙مرحبا انا بوت اسمي "..NameBot.."\n᥀︙اختصاصي حماية المجموعات\n᥀︙من التفليش والسبام والخخ .. . ،\n᥀︙تفعيلي سهل ومجانا فقط قم برفعي ادمن في مجموعتك وارسل امر ↫ تفعيل\n᥀︙سيتم رفع الادمنيه والمنشئ تلقائيا\n᥀︙ارسل امر /free او /play للتمتع باوامر الاعضاء"
 end 
 SendInline(msg.chat_id_,Start_Source,nil,inline)
+end,nil)
 end,nil)
 end
 DevRio:setex(Trox..'Rio:Start:Time'..msg.sender_user_id_,300,true)
@@ -4645,6 +4647,7 @@ end
 end
 --     Source Trox     --
 --        Sticker         --
+elseif msg.content_.ID == "MessageSticker" then
 if not VipMem(msg) then
 if DevRio:get(Trox..'Rio:Lock:Stickers'..msg.chat_id_) then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
@@ -6112,14 +6115,18 @@ end
 end
 --     Source Trox     --
 if text == "الرابط" then
+tdcli_function({ID="GetUserProfilePhotos",user_id_=Trox,offset_=0,limit_= 1},function(arg,rio) 
+if rio.photos_[0] then
 local Link = DevRio:get(Trox..'Rio:Link')
-local Text = [[
-*᥀︙اختر نوع الرابط لجلبه*
-]] 
-keyboard = {} 
-keyboard.inline_keyboard = {{{text="الرابط نص",callback_data="/LinkText:"..msg.sender_user_id_},{text="الرابط انلاين",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="• اخفاء الكليشه •",callback_data="/HideHelpList:"..msg.sender_user_id_}}}
-Msg_id = msg.id_/2097152/0.5
-return https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Link or Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+local Text = '*᥀︙اختر نوع الرابط لجلبه*'
+keyboard = {}
+keyboard.inline_keyboard = {{{text="‹ الرابط نص ›",callback_data="/LinkText:"..msg.sender_user_id_},{text="‹ الرابط انلاين ›",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="‹ اخفاء الكليشه ›",callback_data="/HideHelpList:"..msg.sender_user_id_}},{{text='‹ TeAm David ›',url="t.me/L9L9L"}}}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Text)..'&photo='..rio.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+else
+Dev_Rio(msg.chat_id_,msg.id_,1, '*᥀︙اختر نوع الرابط لجلبه*', "md")
+end
+end,nil)
 end
 --     Source Trox     --
 if text == 'الالعاب' and ChCheck(msg) or text == 'العاب' and ChCheck(msg) or text == 'اللعبه' and ChCheck(msg) or text == '↫ الالعاب ᥀' and ChCheck(msg) then
