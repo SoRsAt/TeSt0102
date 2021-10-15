@@ -6120,7 +6120,7 @@ if rio.photos_[0] then
 local Link = DevRio:get(Trox..'Rio:Link')
 local Text = '*᥀︙اختر نوع الرابط لجلبه*'
 keyboard = {}
-keyboard.inline_keyboard = {{{text="‹ الرابط نص ›",callback_data="/LinkText:"..msg.sender_user_id_},{text="‹ الرابط انلاين ›",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="‹ اخفاء الكليشه ›",callback_data="/HideHelpList:"..msg.sender_user_id_}},{{text='‹ TeAm David ›',url="t.me/L9L9L"}}}
+keyboard.inline_keyboard = {{{text="‹ الرابط نص ›",callback_data="/LinkText:"..msg.sender_user_id_},{text="‹ الرابط انلاين ›",callback_data="/Linkinline:"..msg.sender_user_id_}},{{text="‹ اخفاء الكليشه ›",callback_data="/HideHelpList:"..msg.sender_user_id_}}}
 local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id='..msg.chat_id_..'&caption='..URL.escape(Text)..'&photo='..rio.photos_[0].sizes_[1].photo_.persistent_id_..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 else
