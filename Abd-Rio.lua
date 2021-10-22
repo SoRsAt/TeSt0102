@@ -833,22 +833,6 @@ end
 --     Source Trox     --
 function riomoned(chat_id, user_id, msg_id, text, offset, length) local tt = DevRio:get(Trox..'endmsg') or '' tdcli_function ({ ID = "SendMessage", chat_id_ = chat_id, reply_to_message_id_ = msg_id, disable_notification_ = 0, from_background_ = 1, reply_markup_ = nil, input_message_content_ = { ID = "InputMessageText", text_ = text..'\n\n'..tt, disable_web_page_preview_ = 1, clear_draft_ = 0, entities_ = {[0]={ ID="MessageEntityMentionName", offset_=offset, length_=length, user_id_=user_id }, }, }, }, dl_cb, nil) end
 --     Source Trox     --
-function SourceCh(msg) 
-local url,res = https.request('https://ccccxcc.ml/Trox/SourceCh.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.ChatMember.Trox ~= true then
-Var = false
-Text = "*᥀︙عذرا لاتستطيع استخدام البوت !\n᥀︙عليك الاشتراك في قناة السورس اولا :*"
-keyboard = {} 
-keyboard.inline_keyboard = {{{text="TeAm Trox",url="t.me/XXXZZ"}}} 
-Msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendMessage?chat_id='..msg.chat_id_..'&text=' .. URL.escape(Text).."&reply_to_message_id="..Msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-else
-Var = true
-end
-return Var
-end
---     Source Trox     --
 function ChCheck(msg)
 local var = true 
 if DevRio:get(Trox.."Rio:ChId") then
@@ -6305,7 +6289,7 @@ DevRio:set(Trox..'Rio:viewget'..msg.sender_user_id_,true)
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙حسنا قم باعادة توجيه للمنشور الذي تريدني حساب مشاهداته', 1, 'md')
 end
 --     Source Trox     --
-if text == "سورس" and SourceCh(msg) or text == "السورس" and SourceCh(msg) or text == "يا سورس" and SourceCh(msg) or text == "↫  السورس ᥀" and SourceCh(msg) then
+if text == "سورس" and ChCheck(msg) or text == "السورس" and ChCheck(msg) or text == "يا سورس" and ChCheck(msg) or text == "↫  السورس ᥀" and ChCheck(msg) then
 Text = [[
 Welcome To Source
 ᥀︙[TeAm Trox](https://t.me/XXXZZ)
@@ -12963,7 +12947,7 @@ riomoned(msg.chat_id_, msg.sender_user_id_, msg.id_, TroxTeam, 14, string.len(ms
 DevRio:set(Trox.."Rio:WhyTube"..msg.chat_id_,true) 
 return false  
 end 
-if text and text:match('^بحث (.*)$') and not DevRio:get(Trox.."Rio:WhyTube"..msg.chat_id_) and SourceCh(msg) then            
+if text and text:match('^بحث (.*)$') and not DevRio:get(Trox.."Rio:WhyTube"..msg.chat_id_) and ChCheck(msg) then            
 local Text = text:match('^بحث (.*)$') 
 local msg_id = msg.id_/2097152/0.5 
 https.request('https://ccccxcc.ml/Trox/Yt.php?Put=Search&TokenBot='..TokenBot..'&ChatId='..msg.chat_id_..'&UserId='..msg.sender_user_id_..'&Text='..URL.escape(Text)..'&MsgId='..msg_id..'&Name='..DirName)
@@ -13223,7 +13207,7 @@ else
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙لم يتم تعيين قناة الاشتراك الاجباري \n᥀︙ارسل ↫ تعيين قناة الاشتراك للتعيين ', 1, 'md')
 end end end end
 --     Source Trox     --
-if text == 'القناة' and SourceCh(msg) or text == 'قناة السورس' and SourceCh(msg) or text == 'قناه السورس' and SourceCh(msg) or text == 'قنات السورس' and SourceCh(msg) or text == '↫ قناة السورس ᥀' and SourceCh(msg) then 
+if text == 'القناة' and ChCheck(msg) or text == 'قناة السورس' and ChCheck(msg) or text == 'قناه السورس' and ChCheck(msg) or text == 'قنات السورس' and ChCheck(msg) or text == '↫ قناة السورس ᥀' and ChCheck(msg) then 
 Text = [[
 ᥀︙[قناة السورس](https://t.me/XXXZZ)
 ]]
@@ -13236,7 +13220,7 @@ https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' ..
 return false
 end
 --     Source Trox     --
-if text == "مبرمج السورس" and SourceCh(msg) or text == "مطور السورس" and SourceCh(msg) or text == "وين المبرمج" and SourceCh(msg) or text == "المبرمج" and SourceCh(msg) or text == "↫ مبرمج السورس ᥀" and SourceCh(msg) then 
+if text == "مبرمج السورس" and ChCheck(msg) or text == "مطور السورس" and ChCheck(msg) or text == "وين المبرمج" and ChCheck(msg) or text == "المبرمج" and ChCheck(msg) or text == "↫ مبرمج السورس ᥀" and ChCheck(msg) then 
 Text = [[
 ᥀︙[مبرمج السورس](https://t.me/EEEEEL)
 ]]
