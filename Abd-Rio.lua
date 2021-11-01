@@ -6319,7 +6319,7 @@ Text = [[
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = '❍ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘼𝙇𝙁𝘼 ♪',url="https://t.me/so_alfaa"}},{{text = '❍ 𝘿𝙀𝙑 𝙈𝘼𝘿𝙄𝙎𝙊𝙉 ♪',url="t.me/AAHMEED11"},{text = '❍ 𝘿𝙀𝙑 𝘿𝙄𝘾𝘼𝘽𝙍𝙊 ♪',url="https://t.me/YY_OIO"}},{{text= '❍ 𝙋𝙍𝙊𝙂𝙂𝙍𝘼𝙈𝙀𝙍 ♪',url="https://t.me/USERR_ALFA"}}}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/so_alfaa&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/MADI_PICK/41&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
 --     Source Trox     --
@@ -11095,7 +11095,7 @@ if text and (text == "اغنيه" or text == "↫ اغنيه ᥀" or text == "ا
 Rio = math.random(2,1167); 
 local Text ='*᥀︙تم اختيار الاغنيه لك*'
 keyboard = {}  
-keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/mp3:"..msg.sender_user_id_}},{{text = '❍ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘼𝙇𝙁𝘼 ♪',url="t.me/so_alfaa"}}} 
+keyboard.inline_keyboard = {{{text=". مره اخرى ᥀",callback_data="/mp3:"..msg.sender_user_id_}},{{text = '❍ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘼𝙇??𝘼 ♪',url="t.me/so_alfaa"}}} 
 local msg_id = msg.id_/2097152/0.5 
 https.request("https://api.telegram.org/bot"..TokenBot..'/sendAudio?chat_id=' .. msg.chat_id_ .. '&audio=https://t.me/DavidMp3/'..Rio..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
