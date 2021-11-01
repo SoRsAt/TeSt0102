@@ -6479,7 +6479,7 @@ local username = text:match('^هينه @(.*)') or text:match('^هينها @(.*)'
 function TroxTeam(extra,result,success)
 if result.id_ then  
 if tonumber(result.id_) == tonumber(Trox) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' شو يابا دا اقل من انك ترد عليه بس كسمو عشانك, 'md')  
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'شو تمضرط اكو واحد يهين نفسه؟🤔👌🏿', 1, 'md')
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
