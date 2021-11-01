@@ -6317,9 +6317,9 @@ Text = [[
 ᥀︙[❍ 𝙎𝙊𝙐𝙍𝘾𝙀 𝘼𝙇𝙁𝘼 ♪](https://t.me/so_alfaa)
 ]]
 keyboard = {} 
-keyboard.inline_keyboard = {{{text = 'SoUrCe alFa',url="https://t.me/so_alfaa"}},{{text = '❍ DeVoLPer¹ ♪',url="t.me/AAHMEED11"},{text = '❍ DeVoLPer² ♪',url="https://t.me/YY_OIO"}},{{text= '❍ PrOgRaMmEr ♪',url="https://t.me/USERR_ALFA"}}}
+keyboard.inline_keyboard = {{{text = '᥀ Source Channel',url="https://t.me/so_alfaa"}},{{text = '᥀ Developer',url="t.me/AAHMEED11"},{text = '᥀ Developer',url="https://t.me/YY_OIO"}},{{text= '᥀ Exp Source .',url="https://t.me/USERR_ALFA"}}}
 local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/so_alfaa&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendPhoto?chat_id=' .. msg.chat_id_ .. '&photo=https://t.me/XXXZZ&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
 --     Source Trox     --
