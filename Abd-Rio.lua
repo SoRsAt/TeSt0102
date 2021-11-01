@@ -6479,19 +6479,19 @@ local username = text:match('^هينه @(.*)') or text:match('^هينها @(.*)'
 function TroxTeam(extra,result,success)
 if result.id_ then  
 if tonumber(result.id_) == tonumber(Trox) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'شو يابا دا اقل من انك ترد عليه بس كسمو عشانك, md')  
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'شو يابا دا اقل من انك ترد عليه بس كسمو عشانك, md')  
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'فكك منه ميستاهلش, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'فكك منه ميستاهلش, 'md') 
 return false  
 end  
 if tonumber(result.id_) == tonumber(1208165035) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md') 
 return false  
 end  
 if DevRio:sismember(Trox.."Rio:RioConstructor:"..msg.chat_id_,result.id_) then
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي احظره واريخ دماغي؟!! , 'md')
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'دي احظره واريخ دماغي؟!! , 'md')
 return false
 end 
 local TroxTeam = "فشختهؤلك اهؤ 🙈♥." 
@@ -6510,19 +6510,19 @@ if text == ("هينه") or text == ("بعد هينه") or text == ("هينه ب�
 if not DevRio:get(Trox..'Rio:Lock:Stupid'..msg.chat_id_) then
 function hena(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(Trox) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'يابا دا اقل من انك ترد عليه بس كسمو عشانك, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'يابا دا اقل من انك ترد عليه بس كسمو عشانك, 'md') 
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي فكك منه ميستاهلش, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'دي فكك منه ميستاهلش, 'md')
 return false
 end 
 if tonumber(result.sender_user_id_) == tonumber(1208165035) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'دي دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md')
 return false
 end 
 if DevRio:sismember(Trox.."Rio:RioConstructor:"..msg.chat_id_,result.sender_user_id_) then
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي احظره واريخ دماغي؟!! , 'md')
+Dev_Rio(msg.chat_id_, msg.id_, '1, 'دي احظره واريخ دماغي؟!! , 'md')
 return false
 end 
 local TroxTeam = "فشختهؤلك اهؤ 🙈♥" 
@@ -9098,7 +9098,7 @@ local List = {
 𓄼🇮🇶 𝑴𝒔𝒈𝒔 : #msgs
 ]],
 [[
-➞: 𝒔𝒕𝒂𓂅 #stast 𓍯➸💞.
+➞: 𝒔𝒕𝒂𓂅 #stast ??➸💞.
 ➞: 𝒖𝒔𝒆𝒓𓂅 #username 𓍯➸💞.
 ➞: 𝒎𝒔𝒈𝒆𓂅 #msgs 𓍯➸💞.
 ➞: 𝒊𝒅 𓂅 #id 𓍯➸💞.
