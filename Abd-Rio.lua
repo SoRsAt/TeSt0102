@@ -6479,22 +6479,22 @@ local username = text:match('^هينه @(.*)') or text:match('^هينها @(.*)'
 function TroxTeam(extra,result,success)
 if result.id_ then  
 if tonumber(result.id_) == tonumber(Trox) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'شو تمضرط اكو واحد يهين نفسه؟🤔👌🏿', 1, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'شو تمضرط اكو واحد يهين نفسه؟🤔👌🏿', 1, 'md')  
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
-Dev_Rio(msg.chat_id_, msg.id_, , 1, '1 ,' فكك منه ميستاهلش, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md') 
 return false  
 end  
-if tonumber(result.id_) == tonumber(1208165035) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md') 
+if tonumber(result.id_) == tonumber(1659386058) then 
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md') 
 return false  
 end  
 if DevRio:sismember(Trox.."Rio:RioConstructor:"..msg.chat_id_,result.id_) then
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' دي احظره واريخ دماغي؟!! , 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
-local TroxTeam = "فشختهؤلك اهؤ 🙈♥." 
+local TroxTeam = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Rio(msg.chat_id_, msg.id_, 1,TroxTeam, 1, 'md') 
 local TroxTeam = { "لكك جرجف @"..username.." احترم اسيادكك لا اكتلكك وازربب على كبركك،💩🖐🏿","هشش لكك فاشل @"..username.." لتضل تمسلت لا اخربط تضاريس وجهك جنه ابط عبده، 😖👌🏿","حبيبي @"..username.." راح احاول احترمكك هالمره بلكي تبطل حيونه، 🤔🔪","دمشي لك @"..username.." ينبوع الفشل مو زين ملفيك ونحجي وياك هي منبوذ 😏🖕🏿","ها الغليض التفس ابو راس المربع @"..username.." متعلملك جم حجايه وجاي تطكطكهن علينه دبطل😒🔪",}
 Dev_Rio(msg.chat_id_, result.id_, 1,''..TroxTeam[math.random(#TroxTeam)], 1, 'html') 
@@ -6510,22 +6510,22 @@ if text == ("هينه") or text == ("بعد هينه") or text == ("هينه ب�
 if not DevRio:get(Trox..'Rio:Lock:Stupid'..msg.chat_id_) then
 function hena(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(Trox) then 
-Dev_Rio(msg.chat_id_, msg.id_, '1 ,' يابا دا اقل من انك ترد عليه بس كسمو عشانك, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'شو تمضرط اكو واحد يهين نفسه؟🤔👌🏿', 1, 'md') 
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' دي فكك منه ميستاهلش, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
-if tonumber(result.sender_user_id_) == tonumber(1208165035) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' دي دا مبرمج السورس اسكت يعرص ليحظرنا عام 😂🙂, 'md')
+if tonumber(result.sender_user_id_) == tonumber(1659386058) then  
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
 if DevRio:sismember(Trox.."Rio:RioConstructor:"..msg.chat_id_,result.sender_user_id_) then
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' دي احظره واريخ دماغي؟!! , 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
-local TroxTeam = "فشختهؤلك اهؤ 🙈♥" 
+local TroxTeam = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Rio(msg.chat_id_, msg.id_, 1,TroxTeam, 1, 'md') 
 local TroxTeam = {"لكك جرجف احترم اسيادكك لا اكتلكك وازربب على كبركك،💩🖐🏿","هشش فاشل لتضل تمسلت لا اخربط تضاريس وجهك جنه ابط عبده، 😖👌🏿","دمشي لك ينبوع الفشل مو زين ملفيك ونحجي وياك هي منبوذ 😏🖕🏿","ها الغليض التفس ابو راس المربع متعلملك جم حجايه وجاي تطكطكهن علينه دبطل😒🔪","حبيبي راح احاول احترمكك هالمره بلكي تبطل حيونه، 🤔🔪"} 
 Dev_Rio(msg.chat_id_, result.id_, 1,''..TroxTeam[math.random(#TroxTeam)], 1, 'md') 
@@ -6540,16 +6540,16 @@ if text == ("بوسه") or text == ("بعد بوسه") or text == ("ضل بوس"
 if not DevRio:get(Trox..'Rio:Lock:Stupid'..msg.chat_id_) then
 function bosh(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(Trox) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'هبوس نفسي ازاي يبن العبيطه 😂🙂', 1, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس نفسيي؟😶💔', 1, 'md') 
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Rio(msg.chat_id_, result.id_, 1, 'محححح كبيرةة عشأن أنت مطؤري رؤحقلبي 🙈💕. ', 1, 'html')
+Dev_Rio(msg.chat_id_, result.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗', 1, 'html')
 return false
 end 
-local TroxTeam = "اختصبتو اهو🏃🏻‍♂️♥️" 
+local TroxTeam = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Rio(msg.chat_id_, msg.id_, 1,TroxTeam, 1, 'md') 
-local TroxTeam = {"محححححح 🙈💕","مححح كبيرةة فبوقك 🙈💕","مححح جامدةة اهي 💋💕"} 
+local TroxTeam = {"مواححح افيش عافيههه😍🔥💗","امممووااهحح شهلعسل🥺🍯💘","مواححح،ءوفف اذوب🤤💗"} 
 Dev_Rio(msg.chat_id_, result.id_, 1,''..TroxTeam[math.random(#TroxTeam)], 1, 'md') 
 end 
 if tonumber(msg.reply_to_message_id_) == 0 then
@@ -6562,16 +6562,16 @@ if text == ("صيحه") or text == ("صيحها") or text == ("صيحهه") or t
 if not DevRio:get(Trox..'Rio:Lock:Stupid'..msg.chat_id_) then
 function seha(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(Trox) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' هصيح نفسي ازاي يبن العبيطه 😂🙂, 'md') 
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح نفسيي؟😶💔', 1, 'md') 
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Rio(msg.chat_id_, result.id_, 1, 'تعالي يمطوري الناس عيزاك 🙈💕. ', 1, 'html')
+Dev_Rio(msg.chat_id_, result.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️', 1, 'html')
 return false
 end 
-local TroxTeam = "حصل يعم قرفتني 😂♥" 
+local TroxTeam = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Rio(msg.chat_id_, msg.id_, 1,TroxTeam, 1, 'md') 
-local TroxTeam = {"تعالي يعم المهم الناس عيزاك 😂💕","تعالي يعرص كلم عمك 😒💕","تعالي يعم الناس عيزاك شوفهم لركبك؟؟","تعالي يعم عمالين يصيحولك"} 
+local TroxTeam = {"تتعال ححب محتاجيك🙂🍭","تعال يولل استاذكك ايريدككك😒🔪","يمعوود تعاال يريدوكك🤕♥️","تعال لكك ديصيحوك😐🖤"} 
 Dev_Rio(msg.chat_id_, result.id_, 1,''..TroxTeam[math.random(#TroxTeam)], 1, 'md') 
 end 
 if tonumber(msg.reply_to_message_id_) == 0 then
@@ -6587,16 +6587,16 @@ local username = text:match('^صيحه @(.*)') or text:match('^صيح @(.*)')
 function TroxTeam(extra,result,success)
 if result.id_ then  
 if tonumber(result.id_) == tonumber(Trox) then  
-Dev_Rio(msg.chat_id_, msg.id_, 1, 'هصيح نفسي ازاي يبن العبيطه 😂🙂 ', 1, 'md')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح نفسيي؟😶💔', 1, 'md')  
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
-Dev_Rio(msg.chat_id_, msg.id_, 1, '1 ,' تعالي يمطوري الناس عيزاك 🙈💕.  @'..username, 1, 'html')
+Dev_Rio(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @'..username, 1, 'html') 
 return false  
 end  
-local TroxTeam = "حصل اهو يعم قرفتني 🙂" 
+local TroxTeam = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Rio(msg.chat_id_, msg.id_, 1,TroxTeam, 1, 'md') 
-local TroxTeam = { "تعالي يعم الناس @"..username.." عيزاك", تعالي @"..username.." يعرص كلم عمك 😒💕","يعم @"..username.." تعالي عيزينك","تعالي عمالين @"..username.." يصيحولك 😂💕",}
+local TroxTeam = { "تتعال ححب @"..username.." محتاجيك🙂🍭","تعال يولل @"..username.." استاذكك ايريدككك😒🔪","يمعوود @"..username.." تعاال يريدوكك🤕♥️","تعال لكك @"..username.." ديصيحوك😐🖤",}
 Dev_Rio(msg.chat_id_, result.id_, 1,''..TroxTeam[math.random(#TroxTeam)], 1, 'html') 
 else  
 Dev_Rio(msg.chat_id_, msg.id_, 1, '᥀︙العضو غير موجود في المجموعه', 1, 'md') 
